@@ -1,6 +1,8 @@
-# z-react是什么
+# z-react
 
-基于react，react-router，antd，mobx的前端脚手架。您可以使用[z-cli](https://github.com/zhonggithub/z-cli)工具初始化您的项目工程.
+## z-react是什么
+
+基于react，react-router，antd，mobx的前端脚手架。您可以使用[z-cli](https://github.com/zhonggithub/z-cli)工具初始化您的项目工程. 可配合后端脚手架z-app使用。
 
 1，FetchStore与FetchBase已经封装好了访问基于restful风格的后端api：create、upate、list、listAll、treeList、retrieve、updaeStatus。自定义资源或方法时只需要集成该类
 
