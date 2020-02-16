@@ -13,6 +13,11 @@
 ## 如何使用
 
 * zcli init z-react@github
+* input your project name
+* cd your project
+* npm install
+* npm run build:dll
+* npm run start
 
 ## 问题反馈
 
