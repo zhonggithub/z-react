@@ -1,4 +1,5 @@
-import { Upload, Icon, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Upload, Modal } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -35,7 +36,7 @@ export default class ZPicturesWall extends React.Component {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
-        <Icon type="plus" />
+        <PlusOutlined />
         <div className="ant-upload-text">上传</div>
       </div>
     );

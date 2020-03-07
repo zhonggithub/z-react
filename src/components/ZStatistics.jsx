@@ -8,7 +8,8 @@
 */
 import React from 'react';
 import ReactHighcharts from 'react-highcharts';
-import { Icon, Select } from 'antd';
+import { AreaChartOutlined } from '@ant-design/icons';
+import { Select } from 'antd';
 import PropTypes from 'prop-types';
 import ZDatePicker from './ZDatePicker';
 
@@ -60,7 +61,7 @@ renderSelect() {
 }
 
 render() {
-  const config = { ...this.props.config || this.state.config };
+  const config = { ...(this.props.config || this.state.config) };
 
   const tmp = config.series;
   if (this.state.selected !== '全部') {
@@ -76,7 +77,7 @@ render() {
   return (
     <div className="hms-group-layout-border" >
       <div className="hms-statistics-title">
-        <span style={{ fontSize: '16px', margin: '8px 0 -17px 10px' }}><Icon type="area-chart" style={{ marginLeft: '10px', marginRight: '5px' }}/>{this.props.title}</span>
+        <span style={{ fontSize: '16px', margin: '8px 0 -17px 10px' }}><AreaChartOutlined style={{ marginLeft: '10px', marginRight: '5px' }} />{this.props.title}</span>
         <div className="hms-statistics-title-right">
           { this.props.lineSelect === false ? null : this.renderSelect() }
           { this.props.datePicker === false ? null : <ZDatePicker size='large' onChange={this.props.onChange}/>}

@@ -9,8 +9,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Upload, Icon, message, Modal, Button, Tabs,
-} from 'antd';
+  CloseCircleOutlined,
+  InboxOutlined,
+  PictureOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
+import { Upload, message, Modal, Button, Tabs } from 'antd';
 
 const { Dragger } = Upload;
 const { TabPane } = Tabs;
@@ -122,9 +127,9 @@ export default class ZUpload extends React.Component {
             <img className="hms-def-picture-appear-img"
               onClick={this.onImageClick.bind(this, item.href)}
               src={item.href}/>
-            <Icon type='close-circle-o' className="hms-def-picture-appear-close-icon"
-              onClick={this.onImageDelClick.bind(this, item.uid)}
-             />
+            <CloseCircleOutlined
+              className="hms-def-picture-appear-close-icon"
+              onClick={this.onImageDelClick.bind(this, item.uid)} />
             <Modal
              visible={this.state.previewVisible}
              footer={null}
@@ -252,7 +257,7 @@ export default class ZUpload extends React.Component {
         <div style={{ height: 180 }}>
           <Dragger {...props} fileList={this.state.fileList}>
             <p className="ant-upload-drag-icon">
-              <Icon type="inbox" />
+              <InboxOutlined />
             </p>
             <p className="ant-upload-text" style={{ fontSize: '20px' }}>点击或拖拽上传图片</p>
           </Dragger>
@@ -279,7 +284,7 @@ export default class ZUpload extends React.Component {
       <Modal
         width='552px'
         visible={this.state.visible}
-        title={<span><Icon type='picture' /> 图片选择</span>}
+        title={<span><PictureOutlined /> 图片选择</span>}
         onOk={this.handleOk}
         onCancel={this.handleCancel}
         footer={[
@@ -290,7 +295,7 @@ export default class ZUpload extends React.Component {
         ]}
       >
         <Tabs defaultActiveKey="1" style={{ height: `${350 + ((this.state.imageTotal / 5) | 0) * 125}px` }}>
-          <TabPane tab={<span><Icon type="upload" />上传</span>} key="1" >
+          <TabPane tab={<span><UploadOutlined />上传</span>} key="1" >
             { this.renderDragger() }
           </TabPane>
           {/* <TabPane tab={<span><ZIcon iconfont="&#xe632;" />历史上传</span>} key="2">
@@ -317,7 +322,7 @@ export default class ZUpload extends React.Component {
     return (
       <div>
         {this.renderPreview()}
-        <Button type="dashed" icon="plus" onClick={this.showModal} style={{
+        <Button type="dashed" icon={<PlusOutlined />} onClick={this.showModal} style={{
           width: 80, height: 80, fontSize: '26px', marginLeft: '10px', marginTop: '10px', paddingTop: '5px',
         }}>
         </Button>

@@ -13,9 +13,10 @@ import { withRouter, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import { inject, observer } from 'mobx-react';
 
-import {
-  Form, Input, Button, Select, AutoComplete, Card,
-} from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+
+import { Input, Button, Select, AutoComplete, Card } from 'antd';
 import validator from 'validator';
 import { indexPage } from 'config';
 import { ZPageHeader } from 'components';

@@ -6,9 +6,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Table, Menu, Checkbox, Dropdown, BackTop, Button, Icon, Input,
-} from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { Table, Menu, Checkbox, Dropdown, BackTop, Button, Input } from 'antd';
 
 export default class ZTable extends React.Component {
   static propsType = {
@@ -109,7 +108,7 @@ export default class ZTable extends React.Component {
             trigger={['click']}
           >
             <Button type="ghost" style={{ marginLeft: 8, height: 32 }}>
-              选择列 <Icon type="down" />
+              选择列 <DownOutlined />
             </Button>
           </Dropdown>
         }

@@ -12,10 +12,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import lodash from 'lodash';
-import {
-  Form, Input, Button, Card, Tabs, Tooltip,
-  Icon, Col, Switch, Tree, message,
-} from 'antd';
+import { Form, Icon as LegacyIcon } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input, Button, Card, Tabs, Tooltip, Col, Switch, Tree, message } from 'antd';
 import queryString from 'query-string';
 import { ZPageHeader } from 'components';
 import { indexPage } from 'config';
@@ -129,19 +128,17 @@ class PageRoleEdit extends React.Component {
   renderSubTree = (children = []) => {
     if (!children || children.length === 0) return null;
 
-    return (
-      children.map((item) => (
-        <TreeNode
-          title={<span><Icon type={item.icon || 'appstore'} />&nbsp;&nbsp;{item.name}</span>}
-          key={item.id}
-          value={item.id}
-        >
-          {
-            this.renderSubTree(item.children)
-          }
-        </TreeNode>
-      ))
-    );
+    return children.map((item) => (
+      <TreeNode
+        title={<span><LegacyIcon type={item.icon || 'appstore'} />&nbsp;&nbsp;{item.name}</span>}
+        key={item.id}
+        value={item.id}
+      >
+        {
+          this.renderSubTree(item.children)
+        }
+      </TreeNode>
+    ));
   }
 
   renderTabCategoryTree(tab) {

@@ -15,9 +15,9 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Icon, Dropdown, Modal, message, InputNumber, Popconfirm,
-} from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { DeleteOutlined, DownOutlined, FileExcelOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { Dropdown, Modal, message, InputNumber, Popconfirm } from 'antd';
 import querystring from 'querystring';
 import moment from 'moment';
 import ZDatePicker from './ZDatePicker';
@@ -44,7 +44,7 @@ class ZBtn extends React.Component {
       outline: '0 none',
       cursor: 'pointer',
       ...tmp,
-      ...this.props.style || {},
+      ...(this.props.style || {}),
     };
     let btnClassName = 'ant-create-btn';
     let btnIcon = 'plus';
@@ -102,7 +102,7 @@ class ZBtn extends React.Component {
 
     switch (this.props.type) {
       case 'create': case 'edit': case 'retrieve': case 'info': {
-        const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
+        const icon = <LegacyIcon type={ btnIcon } className="icon-margin-btn"/>;
         if (this.props.disabled) {
           return (
             <button
@@ -125,7 +125,7 @@ class ZBtn extends React.Component {
         );
       }
       case 'refresh': case 'sync': {
-        const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
+        const icon = <LegacyIcon type={ btnIcon } className="icon-margin-btn"/>;
         if (this.props.disabled) {
           return (
             <button
@@ -148,7 +148,7 @@ class ZBtn extends React.Component {
         );
       }
       case 'batch': {
-        const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
+        const icon = <LegacyIcon type={ btnIcon } className="icon-margin-btn"/>;
         const overlay = this.props.overlay || [];
         if (this.props.disabled) {
           return (
@@ -158,7 +158,7 @@ class ZBtn extends React.Component {
                 style={{ ...tmpStyle, background: '#bcbcbc', borderColor: '#bcbcbc' }}
                 onClick={this.props.onClick }
               >
-                {icon}{text}<Icon type='down'/>
+                {icon}{text}<DownOutlined />
               </button>
             </Dropdown>
           );
@@ -170,13 +170,13 @@ class ZBtn extends React.Component {
               style={tmpStyle}
               onClick={this.props.onClick }
             >
-              {icon}{text}<Icon type='down'/>
+              {icon}{text}<DownOutlined />
             </button>
           </Dropdown>
         );
       }
       case 'status': {
-        const icon = <Icon type={this.props.status === false ? btnIcon[1] : btnIcon[0]} className="icon-margin-btn"/>;
+        const icon = <LegacyIcon type={this.props.status === false ? btnIcon[1] : btnIcon[0]} className="icon-margin-btn"/>;
         if (this.props.disabled) {
           return (
             <button
@@ -220,7 +220,7 @@ class ZDelBtn extends React.Component {
       outline: '0 none',
       cursor: 'pointer',
       ...tmp,
-      ...this.props.style || {},
+      ...(this.props.style || {}),
     };
     if (this.props.disabled) {
       return (
@@ -228,7 +228,7 @@ class ZDelBtn extends React.Component {
           className="ant-delete-btn"
           style={{ ...tmpStyle, background: '#bcbcbc' }}
         >
-          <Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}
+          <DeleteOutlined className="icon-margin-btn" />{this.props.text || '删除'}
         </button>
       );
     }
@@ -238,7 +238,7 @@ class ZDelBtn extends React.Component {
           className="ant-delete-btn"
           style={tmpStyle}
         >
-          <Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}
+          <DeleteOutlined className="icon-margin-btn" />{this.props.text || '删除'}
         </button>
       </Popconfirm>
     );
@@ -262,14 +262,14 @@ class ZDefBtn extends React.Component {
     if (this.props.size === 'lagre') {
       className = 'ant-def-btn-lagre';
     }
-    let content = (<span><Icon type={this.props.icon} className="icon-margin-btn"/>{this.props.text || '自定义'}</span>);
+    let content = (<span><LegacyIcon type={this.props.icon} className="icon-margin-btn"/>{this.props.text || '自定义'}</span>);
     if (this.props.iconfont) {
       content = (<span>{this.props.iconfont}{this.props.text || '自定义'}</span>);
     }
     let padding = '2px 10px 2px 6px';
     if (this.props.size === 'large') { padding = '4px 14px 4px 8px'; }
 
-    const tmpStyle = { background: '#bcbcbc', padding, ...this.props.style || {} };
+    const tmpStyle = { background: '#bcbcbc', padding, ...(this.props.style || {}) };
     if (this.props.disabled) {
       return (<button
         className={this.props.className || className} style={tmpStyle}
@@ -425,7 +425,7 @@ class ZExportExcelBtn extends React.Component {
       cursor: 'pointer',
       margin: '5px',
       ...tmp,
-      ...this.props.style || {},
+      ...(this.props.style || {}),
     };
 
     const content = <div>
@@ -440,10 +440,10 @@ class ZExportExcelBtn extends React.Component {
           style={tmpStyle}
           onClick={this.props.onClick || this.showModal}
         >
-          <Icon type="file-excel" className="icon-margin-btn"/>{this.props.text || '导出Excel'}
+          <FileExcelOutlined className="icon-margin-btn" />{this.props.text || '导出Excel'}
         </button>
 
-        <Modal title={<span><Icon style={{ fontSize: '24px', color: '#108ee9' }} type='info-circle'/> 一次最多只能导出 2000 条数据</span>} visible={this.state.visible}
+        <Modal title={<span><InfoCircleOutlined style={{ fontSize: '24px', color: '#108ee9' }} /> 一次最多只能导出 2000 条数据</span>} visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
           {content}
@@ -466,30 +466,28 @@ class ZExportExcelBtn extends React.Component {
       outline: '0 none',
       cursor: 'pointer',
       ...tmp,
-      ...this.props.style || {},
+      ...(this.props.style || {}),
     };
 
-    return (
-      <>
-        <button
-          onClick={this.props.onClick || this.showModal}
-          className="ant-export-excel-btn"
-          style={tmpStyle}
-        >
-          <Icon type="file-excel" className="icon-margin-btn"/>{this.props.text || '导出Excel'}
-        </button>
-        <Modal
-          title={<span><Icon style={{ fontSize: '24px', color: '#108ee9' }} type='info-circle'/> 一次最多只能导出一个月的数据</span>} visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <ZDatePicker
-            onChange={this.onDateChange}
-            defaultValue={this.state.date}
-          />
-        </Modal>
-      </>
-    );
+    return <>
+      <button
+        onClick={this.props.onClick || this.showModal}
+        className="ant-export-excel-btn"
+        style={tmpStyle}
+      >
+        <FileExcelOutlined className="icon-margin-btn" />{this.props.text || '导出Excel'}
+      </button>
+      <Modal
+        title={<span><InfoCircleOutlined style={{ fontSize: '24px', color: '#108ee9' }} /> 一次最多只能导出一个月的数据</span>} visible={this.state.visible}
+        onOk={this.handleOk}
+        onCancel={this.handleCancel}
+      >
+        <ZDatePicker
+          onChange={this.onDateChange}
+          defaultValue={this.state.date}
+        />
+      </Modal>
+    </>;
   }
 
   render() {

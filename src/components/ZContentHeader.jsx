@@ -5,7 +5,8 @@
  * @Last Modified time: 2018-07-29 22:15:55
  */
 import React from 'react';
-import { Icon, Switch } from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Switch } from 'antd';
 import PropTypes from 'prop-types';
 import { computed } from 'mobx';
 
@@ -61,9 +62,7 @@ export default class ZContentHeader extends React.Component {
   }
 
   renderTitle() {
-    return (
-      <Icon type={ this.props.icon || this.icon } style={ this.titleStyle }/>
-    );
+    return <LegacyIcon type={ this.props.icon || this.icon } style={ this.titleStyle }/>;
   }
 
   onChange = (is) => {

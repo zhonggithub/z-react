@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Icon } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
@@ -50,7 +51,7 @@ class Content extends React.Component {
           className={`${props.className}-icon`}
           key="icon"
         >
-          <Icon type="down" />
+          <DownOutlined />
         </TweenOne>
       </OverPack>
     );

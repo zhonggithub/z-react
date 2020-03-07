@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { computed } from 'mobx';
-import { Icon } from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
 
 require('../style/iconfont.css');
 
@@ -50,11 +50,11 @@ export default class ZIcon extends React.Component {
       if (type.startsWith('&#')) {
         return (<i className="iconfont" { ...tmpProps } style={this.style}>{ type}</i>);
       }
-      return <Icon { ...tmpProps } type={type} style={this.style} />;
+      return <LegacyIcon { ...tmpProps } type={type} style={this.style} />;
     }
 
     if (this.props.icon) {
-      return <Icon { ...tmpProps } type={this.props.icon} style={this.style} />;
+      return <LegacyIcon { ...tmpProps } type={this.props.icon} style={this.style} />;
     }
     return (<i className="iconfont" { ...tmpProps } style={this.style}>{ this.props.iconfont}</i>);
   }

@@ -5,6 +5,7 @@
  * @Last Modified time: 2018-07-29 22:29:07
  */
 import React from 'react';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Button, Input, Row, message,
 } from 'antd';
@@ -96,9 +97,9 @@ export default class ZNumberInput extends React.Component {
     }
     return (
       <Row>
-        <Button disabled={this.state.minusDisabled} type="primary" icon="minus" onClick={this.onBtnClick.bind(this, 'minus')}/>
+        <Button disabled={this.state.minusDisabled} type="primary" icon={<MinusOutlined />} onClick={this.onBtnClick.bind(this, 'minus')}/>
         <Input style={{ width: 200, textAlign: 'right' }} value={textValue} defaultValue={textValue} onChange={this.setValue}/>
-        <Button disabled={this.state.plusDisabled} type="primary" icon="plus" onClick={this.onBtnClick.bind(this, 'plus')}/>
+        <Button disabled={this.state.plusDisabled} type="primary" icon={<PlusOutlined />} onClick={this.onBtnClick.bind(this, 'plus')}/>
       </Row>
     );
   }

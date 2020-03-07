@@ -7,9 +7,9 @@
 */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Card, Col, Row, Icon,
-} from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { RightCircleOutlined } from '@ant-design/icons';
+import { Card, Col, Row } from 'antd';
 import PropTypes from 'prop-types';
 
 export default class ZOverview extends React.Component {
@@ -57,9 +57,9 @@ export default class ZOverview extends React.Component {
 
   renderOpertionsIcon = (item) => {
     if (!item.icon) return null;
-    return (typeof item.icon === 'string' ? <div style={{ float: 'left' }}>
-    <Icon type={ item.icon } style={{ fontSize: '80px' }} />
-  </div> : item.icon);
+    return typeof item.icon === 'string' ? <div style={{ float: 'left' }}>
+    <LegacyIcon type={ item.icon } style={{ fontSize: '80px' }} />
+  </div> : item.icon;
   }
 
   cardOpertions(dataArray) {
@@ -82,7 +82,7 @@ export default class ZOverview extends React.Component {
             <p>{item.content}</p>
             {
               item.url ? <div style={{ fontSize: '16px', margin: '20px 0' }}>
-                <Link to={item.url} style={{ color: '#fff' }}>{item.title}<Icon type="right-circle-o" style={{ marginLeft: '10px' }}/></Link>
+                <Link to={item.url} style={{ color: '#fff' }}>{item.title}<RightCircleOutlined style={{ marginLeft: '10px' }} /></Link>
               </div> : <div style={{ fontSize: '16px', margin: '20px 0' }}>{ item.title }</div>
             }
           </Card>

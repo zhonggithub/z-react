@@ -12,9 +12,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Icon, Modal,
-} from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
 
 export default class ZPictureAppear extends React.Component {
   static propTypes = {
@@ -66,9 +65,9 @@ export default class ZPictureAppear extends React.Component {
             onClick={this.onImageClick}
             src={this.props.imageUrl}
             />
-          <Icon type='close-circle-o' className='hms-def-picture-appear-close-icon'
-            onClick={this.onImageDelClick}
-          />
+          <CloseCircleOutlined
+            className='hms-def-picture-appear-close-icon'
+            onClick={this.onImageDelClick} />
           <Modal visible={this.state.previewVisible} width="800px" style={{ textAlign: 'center' }} footer={null} onCancel={this.handlePreviewCancel}>
             <img alt="example" style={{ maxWidth: '750px' }} src={this.props.imageUrl} />
           </Modal>

@@ -12,10 +12,24 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import validator from 'validator';
 import { withRouter } from 'react-router-dom';
+import { Form, Icon as LegacyIcon } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import {
-  Row, Col, Button, Tabs, Popconfirm, Modal, Divider,
-  Tree, Icon, Card, Tooltip, Form, Input, message,
-  InputNumber, Switch,
+  Row,
+  Col,
+  Button,
+  Tabs,
+  Popconfirm,
+  Modal,
+  Divider,
+  Tree,
+  Card,
+  Tooltip,
+  Input,
+  message,
+  InputNumber,
+  Switch,
 } from 'antd';
 import { ZPageHeader, ZIcon } from 'components';
 import config from 'config';
@@ -202,51 +216,49 @@ export default class PageModuleList extends React.Component {
   renderSubTree = (children = []) => {
     if (!children || children.length === 0) return null;
 
-    return (
-      children.map((item, index) => (
-        <TreeNode
-          title={
-            <span>
-              <Icon type={item.icon || 'appstore'} />&nbsp;&nbsp;
-              {item.name}&nbsp;&nbsp;
-              <Button type="primary" shape="circle" size='small' icon="plus" onClick={this.addBtnClick.bind(this, item.id)}/>
-              &nbsp;&nbsp;
-              <Button type="primary" shape="circle" size='small' icon="edit" onClick={this.editBtnClick.bind(this, item)}/>
-              &nbsp;&nbsp;
-              <Tooltip title='删除'>
-                <Popconfirm
-                  title="该操作会删除该类目下的子模块，确定删除吗?"
-                  onConfirm={() => this.onDeleteClick(item, index, true)}
-                >
-                  <Button
-                    type="danger"
-                    shape="circle"
-                    size='small'
-                    icon="delete"
-                  />
-                </Popconfirm>
-              </Tooltip>
-
-              &nbsp;&nbsp;
-              <Tooltip title={item.status === 1 ? '关闭模块' : '开启模块'}>
+    return children.map((item, index) => (
+      <TreeNode
+        title={
+          <span>
+            <LegacyIcon type={item.icon || 'appstore'} />&nbsp;&nbsp;
+            {item.name}&nbsp;&nbsp;
+            <Button type="primary" shape="circle" size='small' icon={<PlusOutlined />} onClick={this.addBtnClick.bind(this, item.id)}/>
+            &nbsp;&nbsp;
+            <Button type="primary" shape="circle" size='small' icon={<EditOutlined />} onClick={this.editBtnClick.bind(this, item)}/>
+            &nbsp;&nbsp;
+            <Tooltip title='删除'>
+              <Popconfirm
+                title="该操作会删除该类目下的子模块，确定删除吗?"
+                onConfirm={() => this.onDeleteClick(item, index, true)}
+              >
                 <Button
-                  type="primary"
+                  type="danger"
                   shape="circle"
                   size='small'
-                  icon={item.status === 1 ? 'eye-invisible' : 'eye'}
+                  icon={<DeleteOutlined />}
                 />
-              </Tooltip>
-            </span>
-          }
-          key={item.id}
-          value={item.id}
-        >
-          {
-            this.renderSubTree(item.children)
-          }
-        </TreeNode>
-      ))
-    );
+              </Popconfirm>
+            </Tooltip>
+
+            &nbsp;&nbsp;
+            <Tooltip title={item.status === 1 ? '关闭模块' : '开启模块'}>
+              <Button
+                type="primary"
+                shape="circle"
+                size='small'
+                icon={<LegacyIcon type={item.status === 1 ? 'eye-invisible' : 'eye'} />}
+              />
+            </Tooltip>
+          </span>
+        }
+        key={item.id}
+        value={item.id}
+      >
+        {
+          this.renderSubTree(item.children)
+        }
+      </TreeNode>
+    ));
   }
 
   renderTabCategoryTree(id) {
@@ -268,7 +280,7 @@ export default class PageModuleList extends React.Component {
                 type="primary"
                 shape="circle"
                 size='small'
-                icon="plus"
+                icon={<PlusOutlined />}
                 onClick={this.addBtnClick.bind(this, 'all')}
               />
             </span>
@@ -504,66 +516,64 @@ export default class PageModuleList extends React.Component {
       breadcrumbItems, panes, selectTab,
       editAble, name, key, icon, editTab,
     } = this.state;
-    return (
-      <>
-        <ZPageHeader
-          items={breadcrumbItems}
-          separator="*"
-          content="模块管理"
-          switchDisabled
-        />
-        <div className='page-content'>
-          <Card>
-            <Tabs
-              onChange={this.onTabChange}
-              activeKey={`${selectTab}`}
-              type="editable-card"
-              onEdit={this.onTabEdit}
-            >
-              {
-                panes.map((item) => (
-                  <TabPane
-                    tab={
-                      editTab.id === item.id ? (
-                        <Input
-                          value={item.name}
-                          autoFocus
-                          onKeyPress={this.handleKeyPress}
-                          onBlur={this.handleSubmit}
-                          onChange={this.onNameChange}
-                        />
-                      ) : (<span><Tooltip title="单击可编辑"><Button size='small' type="link" icon='edit' onClick={this.onTabNameClick.bind(this, item)}/></Tooltip>{item.name}</span>)
+    return <>
+      <ZPageHeader
+        items={breadcrumbItems}
+        separator="*"
+        content="模块管理"
+        switchDisabled
+      />
+      <div className='page-content'>
+        <Card>
+          <Tabs
+            onChange={this.onTabChange}
+            activeKey={`${selectTab}`}
+            type="editable-card"
+            onEdit={this.onTabEdit}
+          >
+            {
+              panes.map((item) => (
+                <TabPane
+                  tab={
+                    editTab.id === item.id ? (
+                      <Input
+                        value={item.name}
+                        autoFocus
+                        onKeyPress={this.handleKeyPress}
+                        onBlur={this.handleSubmit}
+                        onChange={this.onNameChange}
+                      />
+                    ) : (<span><Tooltip title="单击可编辑"><Button size='small' type="link" icon={<EditOutlined />} onClick={this.onTabNameClick.bind(this, item)}/></Tooltip>{item.name}</span>)
+                  }
+                  key={item.id}
+                  closable={item.closable}
+                >
+                  <Col span={4}/>
+                  <Col span={20}>
+                    {
+                      this.renderTabCategoryTree(item.id)
                     }
-                    key={item.id}
-                    closable={item.closable}
-                  >
-                    <Col span={4}/>
-                    <Col span={20}>
-                      {
-                        this.renderTabCategoryTree(item.id)
-                      }
-                    </Col>
-                  </TabPane>
-                ))
-              }
-            </Tabs>
+                  </Col>
+                </TabPane>
+              ))
+            }
+          </Tabs>
 
-            <Divider/>
-            <Row style={{ marginTop: 20 }}>
-              <Col span={6}></Col>
-              <Col span={8}><Button type='primary' onClick={this.onFormSubmin}>确定</Button></Col>
-            </Row>
-          </Card>
+          <Divider/>
+          <Row style={{ marginTop: 20 }}>
+            <Col span={6}></Col>
+            <Col span={8}><Button type='primary' onClick={this.onFormSubmin}>确定</Button></Col>
+          </Row>
+        </Card>
 
-          <CollectionCreateForm
-            wrappedComponentRef={this.saveFormRef}
-            visible={editAble}
-            inputData={{ name, key, icon }}
-            onCancel={this.onCancel}
-            onCreate={this.handleCreate}
-          />
-        </div>
-      </>
-    );
+        <CollectionCreateForm
+          wrappedComponentRef={this.saveFormRef}
+          visible={editAble}
+          inputData={{ name, key, icon }}
+          onCancel={this.onCancel}
+          onCreate={this.handleCreate}
+        />
+      </div>
+    </>;
   }
 }

@@ -13,10 +13,10 @@ import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 // import HeaderSearch from 'ant-design-pro/lib/HeaderSearch';
-import {
-  Layout, Menu, Icon, Row, Tag, Col, Dropdown, Avatar, Modal,
-} from 'antd';
+import { Layout, Menu, Row, Tag, Col, Dropdown, Avatar, Modal } from 'antd';
 import config from 'config';
 
 const { Header } = Layout;
@@ -121,7 +121,7 @@ export default class ZAppTopNavigation extends React.Component {
       }}>
         <Row justify='space-between' style={{ marginRight: 24 }}>
           <Col span={4}>
-            <Icon
+            <LegacyIcon
               className="trigger"
               type={collapse ? 'menu-unfold' : 'menu-fold'}
               onClick={this.props.onCollapseChange}
@@ -188,10 +188,10 @@ export default class ZAppTopNavigation extends React.Component {
                   overlay={
                     <Menu onClick={this.handleMenuClick} style={{ width: 160 }}>
                       <Menu.Item key='1'>
-                        <span><Icon type="logout" />&nbsp;&nbsp;退出</span>
+                        <span><LogoutOutlined />&nbsp;&nbsp;退出</span>
                       </Menu.Item>
                       <Menu.Item key='2'>
-                        <Link to={`${config.pagePrefix}/system/mesetting?id=${this.appStore.payload.id}`}><Icon type="setting" />&nbsp;&nbsp;账号设置</Link>
+                        <Link to={`${config.pagePrefix}/system/mesetting?id=${this.appStore.payload.id}`}><SettingOutlined />&nbsp;&nbsp;账号设置</Link>
                       </Menu.Item>
                     </Menu>
                   }

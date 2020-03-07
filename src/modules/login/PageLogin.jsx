@@ -13,10 +13,10 @@
 
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import {
-  Form, Input, Icon, Row, Button, Menu, message,
-  Checkbox,
-} from 'antd';
+import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input, Row, Button, Menu, message, Checkbox } from 'antd';
 import config from 'config';
 
 function noop() {
@@ -129,60 +129,58 @@ class PageLogin extends React.Component {
     }
     const { getFieldDecorator } = this.props.form;
     const rowStyle = { marginLeft: '28px', marginTop: '20px' };
-    return (
-      <>
-        <Form.Item>
-          <Row style={ !this.state.errorText ? { ...rowStyle, marginTop: '50px' } : { ...rowStyle, marginTop: '-10px' }}>
-            {
-              getFieldDecorator('account', {
-                initialValue: this.account,
-              })(
-                <Input
-                  size="large"
-                  style={{ width: 260 }}
-                  prefix={
-                    <Icon type="user" style={{ fontSize: 13 }} />
-                  }
-                  placeholder="手机号"
+    return <>
+      <Form.Item>
+        <Row style={ !this.state.errorText ? { ...rowStyle, marginTop: '50px' } : { ...rowStyle, marginTop: '-10px' }}>
+          {
+            getFieldDecorator('account', {
+              initialValue: this.account,
+            })(
+              <Input
+                size="large"
+                style={{ width: 260 }}
+                prefix={
+                  <UserOutlined style={{ fontSize: 13 }} />
+                }
+                placeholder="手机号"
+              />,
+            )
+          }
+        </Row>
+      </Form.Item>
+      <Form.Item>
+        <Row style={{ ...rowStyle, marginTop: '-10px' }}>
+          {
+            getFieldDecorator('password', { initialValue: this.password ? this.password.slice(-8) : '' })(
+              <Input
+                size="large"
+                style={{ width: 260 }}
+                prefix={<LockOutlined style={{ fontSize: 13 }} />}
+                type="password"
+                autoComplete="off"
+                placeholder="密码"
+                onContextMenu={noop}
+                onPaste={noop}
+                onCopy={noop}
+                onCut={noop}
+              />,
+            )}
+        </Row>
+      </Form.Item>
+      <Form.Item>
+        <Row style={{ ...rowStyle, marginTop: '-10px' }}>
+          {
+            getFieldDecorator('verificationCode')(
+              <Input size="large" style={{ width: '100px', float: 'left' }} prefix={<LockOutlined style={{ fontSize: 13 }} />} autoComplete="off" onKeyPress={this.handleKeyPress} placeholder="验证码"
                 />,
-              )
-            }
-          </Row>
-        </Form.Item>
-        <Form.Item>
-          <Row style={{ ...rowStyle, marginTop: '-10px' }}>
-            {
-              getFieldDecorator('password', { initialValue: this.password ? this.password.slice(-8) : '' })(
-                <Input
-                  size="large"
-                  style={{ width: 260 }}
-                  prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
-                  type="password"
-                  autoComplete="off"
-                  placeholder="密码"
-                  onContextMenu={noop}
-                  onPaste={noop}
-                  onCopy={noop}
-                  onCut={noop}
-                />,
-              )}
-          </Row>
-        </Form.Item>
-        <Form.Item>
-          <Row style={{ ...rowStyle, marginTop: '-10px' }}>
-            {
-              getFieldDecorator('verificationCode')(
-                <Input size="large" style={{ width: '100px', float: 'left' }} prefix={<Icon type="lock" style={{ fontSize: 13 }} />} autoComplete="off" onKeyPress={this.handleKeyPress} placeholder="验证码"
-                  />,
-              )}
-            <span className='code-style'>
-              <img className='image-code-style' src={this.state.codeUrl} />
-            </span>
-            <a className='a-style' onClick={this.changeCode}>换一张</a>
-          </Row>
-        </Form.Item>
-      </>
-    );
+            )}
+          <span className='code-style'>
+            <img className='image-code-style' src={this.state.codeUrl} />
+          </span>
+          <a className='a-style' onClick={this.changeCode}>换一张</a>
+        </Row>
+      </Form.Item>
+    </>;
   }
 
   changeMobileCode = () => {
@@ -210,36 +208,34 @@ class PageLogin extends React.Component {
     }
     const { getFieldDecorator } = this.props.form;
     const rowStyle = { marginLeft: '28px', marginTop: '20px' };
-    return (
-      <>
-        <Form.Item>
-          <Row style={ !this.state.errorText ? { ...rowStyle, marginTop: '50px' } : { ...rowStyle, marginTop: '-10px' }}>
-            {
-              getFieldDecorator('mobile')(
-                <Input size="large" style={{ width: '260px' }} prefix={<Icon type="mobile" style={{ fontSize: 13 }} />} placeholder="手机号" />,
-              )
-            }
-          </Row>
-        </Form.Item>
-        <Form.Item>
-          <Row style={{ ...rowStyle, marginTop: '-10px' }}>
-            {
-              getFieldDecorator('code')(
-                <Input
-                  size="large" style={{ width: '160px', float: 'left' }}
-                  prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
-                  autoComplete="off"
-                  placeholder="验证码"
-                  onKeyPress={this.handleKeyPress}
-                />,
-              )}
-            {
-              this.state.num > 0 && this.state.num !== 120 ? <a className='a-style'>{this.state.num}</a> : <a className='a-style' onClick={this.changeMobileCode}>动态验证码</a>
-            }
-          </Row>
-        </Form.Item>
-      </>
-    );
+    return <>
+      <Form.Item>
+        <Row style={ !this.state.errorText ? { ...rowStyle, marginTop: '50px' } : { ...rowStyle, marginTop: '-10px' }}>
+          {
+            getFieldDecorator('mobile')(
+              <Input size="large" style={{ width: '260px' }} prefix={<MobileOutlined style={{ fontSize: 13 }} />} placeholder="手机号" />,
+            )
+          }
+        </Row>
+      </Form.Item>
+      <Form.Item>
+        <Row style={{ ...rowStyle, marginTop: '-10px' }}>
+          {
+            getFieldDecorator('code')(
+              <Input
+                size="large" style={{ width: '160px', float: 'left' }}
+                prefix={<LockOutlined style={{ fontSize: 13 }} />}
+                autoComplete="off"
+                placeholder="验证码"
+                onKeyPress={this.handleKeyPress}
+              />,
+            )}
+          {
+            this.state.num > 0 && this.state.num !== 120 ? <a className='a-style'>{this.state.num}</a> : <a className='a-style' onClick={this.changeMobileCode}>动态验证码</a>
+          }
+        </Row>
+      </Form.Item>
+    </>;
   }
 
   render() {
@@ -261,11 +257,11 @@ class PageLogin extends React.Component {
             selectedKeys={ [this.state.current] }
           >
             <Menu.Item key="account" style={{ zIndex: 1, fontSize: '16px' }}>
-              <Icon type="user" />账号登入
+              <UserOutlined />账号登入
             </Menu.Item>
 
             <Menu.Item key="mobile" style={{ float: 'right', zIndex: 1, fontSize: '16px' }}>
-              <Icon type="mobile" />手机登入
+              <MobileOutlined />手机登入
             </Menu.Item>
           </Menu>
           <Form style={{ marginTop: '-40px' }}>
