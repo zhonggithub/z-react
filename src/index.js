@@ -35,9 +35,8 @@ ReactDOM.render((
     <Provider stores={stores}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact render={ () => <Home/>}/>
-          <Route path="/login" render={() => <Login.PageLogin/>}/>
-          <Route path="/:page" render={ () => (auth() ? <ZAppLayout routes={routers}/> : <Redirect to="/login"/>)}/>
+          <Route path="/" exact render={() => <Login.PageLogin/>}/>
+          <Route path="/:page" render={ () => (auth() ? <ZAppLayout routes={routers}/> : <Redirect to="/"/>)}/>
         </Switch>
       </BrowserRouter>
     </Provider>
