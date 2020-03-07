@@ -17,7 +17,6 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import './i18n';
 import { ZAppLayout } from 'components';
 import { Login } from './modules';
-import Home from './home';
 import stores from './stores';
 import 'antd/dist/antd.less';
 import 'ant-design-pro/dist/ant-design-pro.css';
